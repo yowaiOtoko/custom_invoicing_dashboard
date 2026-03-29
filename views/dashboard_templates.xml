@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="invoicing_dashboard_page" name="Invoicing Dashboard">
+        <t t-call="web.frontend_layout">
+            <t t-set="no_header" t-value="True"/>
+            <t t-set="no_footer" t-value="True"/>
+            <div class="o_invoicing_dashboard container py-4 py-md-5">
+                <style type="text/css">
+                    .o_invoicing_dashboard { --o-accent: #635bff; --o-surface: #f6f9fc; }
+                    .o_invoicing_dashboard .o_kpi-card {
+                        background: #fff; border-radius: 0.75rem; box-shadow: 0 1px 3px rgba(0,0,0,.08);
+                        padding: 1.25rem 1.5rem; height: 100%; border: 1px solid rgba(0,0,0,.06);
+                    }
+                    .o_invoicing_dashboard .o_kpi-label { font-size: 0.8125rem; color: #697386; font-weight: 500; letter-spacing: .02em; }
+                    .o_invoicing_dashboard .o_kpi-value { font-size: 1.75rem; font-weight: 600; color: #0a2540; margin-top: .35rem; }
+                    .o_invoicing_dashboard .o_action-btn {
+                        display: block; width: 100%; text-align: center; padding: 1rem 1.25rem; font-size: 1.05rem;
+                        font-weight: 600; border-radius: 0.65rem; border: none; text-decoration: none;
+                        transition: transform .12s ease, box-shadow .12s ease;
+                    }
+                    .o_invoicing_dashboard .o_action-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(99,91,255,.25); color: #fff; }
+                    .o_invoicing_dashboard .o_action-invoice { background: var(--o-accent); color: #fff; }
+                    .o_invoicing_dashboard .o_action-quote { background: #0a2540; color: #fff; }
+                    .o_invoicing_dashboard .o_section-title { font-size: 1rem; font-weight: 600; color: #0a2540; margin-bottom: .75rem; }
+                    .o_invoicing_dashboard .table thead th { font-size: 0.75rem; text-transform: uppercase; letter-spacing: .04em; color: #697386; border-bottom-width: 1px; }
+                    .o_invoicing_dashboard .table td { vertical-align: middle; font-size: 0.9375rem; }
+                    .o_invoicing_dashboard .o_page-title { font-size: 1.5rem; font-weight: 600; color: #0a2540; margin-bottom: 1.5rem; }
+                </style>
+                <h1 class="o_page-title">Invoicing dashboard</h1>
+                <div class="row g-3 mb-4">
+                    <div class="col-12 col-md-4">
+                        <div class="o_kpi-card">
+                            <div class="o_kpi-label">Total revenue</div>
+                            <div class="o_kpi-value" t-esc="total_revenue_label"/>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <div class="o_kpi-card">
+                            <div class="o_kpi-label">Unpaid invoices</div>
+                            <div class="o_kpi-value" t-esc="unpaid_count"/>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <div class="o_kpi-card">
+                            <div class="o_kpi-label">Draft quotes</div>
+                            <div class="o_kpi-value" t-esc="draft_quotes_count"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-3 mb-5">
+                    <div class="col-12 col-sm-6">
+                        <a t-att-href="invoice_url" class="o_action-btn o_action-invoice">+ Invoice</a>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                        <a t-att-href="quote_url" class="o_action-btn o_action-quote">+ Quote</a>
+                    </div>
+                </div>
+                <div class="row g-4">
+                    <div class="col-12 col-lg-6">
+                        <div class="o_section-title">Recent invoices</div>
+                        <div class="table-responsive rounded-3 border bg-white shadow-sm">
+                            <table class="table table-hover mb-0">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Customer</th>
+                                        <th>Date</th>
+                                        <th class="text-end">Total</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-if="not recent_invoices">
+                                        <tr><td colspan="4" class="text-muted py-4 text-center">No invoices yet.</td></tr>
+                                    </t>
+                                    <t t-foreach="recent_invoices" t-as="row">
+                                        <tr>
+                                            <td t-esc="row['partner_name']"/>
+                                            <td t-esc="row['date_label']"/>
+                                            <td class="text-end" t-esc="row['amount_label']"/>
+                                            <td><span class="badge rounded-pill text-bg-light border" t-esc="row['state_label']"/></td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6">
+                        <div class="o_section-title">Recent quotes</div>
+                        <div class="table-responsive rounded-3 border bg-white shadow-sm">
+                            <table class="table table-hover mb-0">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Customer</th>
+                                        <th>Date</th>
+                                        <th class="text-end">Total</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-if="not recent_quotes">
+                                        <tr><td colspan="4" class="text-muted py-4 text-center">No quotes yet.</td></tr>
+                                    </t>
+                                    <t t-foreach="recent_quotes" t-as="row">
+                                        <tr>
+                                            <td t-esc="row['partner_name']"/>
+                                            <td t-esc="row['date_label']"/>
+                                            <td class="text-end" t-esc="row['amount_label']"/>
+                                            <td><span class="badge rounded-pill text-bg-light border" t-esc="row['state_label']"/></td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>
