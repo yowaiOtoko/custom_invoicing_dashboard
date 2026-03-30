@@ -1,0 +1,138 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* custom_invoicing_dashboard
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: French\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: custom_invoicing_dashboard
+#: model:ir.actions.client,name:custom_invoicing_dashboard.action_invoicing_dashboard
+#: model:ir.ui.menu,name:custom_invoicing_dashboard.menu_invoicing_dashboard
+msgid "Invoicing Dashboard"
+msgstr "Tableau de bord facturation"
+
+#. module: custom_invoicing_dashboard
+#: model:ir.model,name:custom_invoicing_dashboard.model_custom_invoicing_dashboard_dashboard
+msgid "Invoicing dashboard data service"
+msgstr "Service de données du tableau de bord facturation"
+
+#. module: custom_invoicing_dashboard
+#. odoo-python
+#: code:addons/custom_invoicing_dashboard/models/dashboard.py:0
+msgid "You are not allowed to access this dashboard."
+msgstr "Vous n'êtes pas autorisé à accéder à ce tableau de bord."
+
+#. module: custom_invoicing_dashboard
+#. odoo-javascript
+#: code:addons/custom_invoicing_dashboard/static/src/invoicing_dashboard.js:0
+msgid "Loading…"
+msgstr "Chargement…"
+
+#. module: custom_invoicing_dashboard
+#. odoo-javascript
+#: code:addons/custom_invoicing_dashboard/static/src/invoicing_dashboard.js:0
+msgid "Invoicing dashboard"
+msgstr "Tableau de bord facturation"
+
+#. module: custom_invoicing_dashboard
+#. odoo-javascript
+#: code:addons/custom_invoicing_dashboard/static/src/invoicing_dashboard.js:0
+msgid "Total revenue"
+msgstr "Chiffre d'affaires total"
+
+#. module: custom_invoicing_dashboard
+#. odoo-javascript
+#: code:addons/custom_invoicing_dashboard/static/src/invoicing_dashboard.js:0
+msgid "Unpaid invoices"
+msgstr "Factures impayées"
+
+#. module: custom_invoicing_dashboard
+#. odoo-javascript
+#: code:addons/custom_invoicing_dashboard/static/src/invoicing_dashboard.js:0
+msgid "Draft quotes"
+msgstr "Devis brouillon"
+
+#. module: custom_invoicing_dashboard
+#. odoo-javascript
+#: code:addons/custom_invoicing_dashboard/static/src/invoicing_dashboard.js:0
+msgid "+ Invoice"
+msgstr "+ Facture"
+
+#. module: custom_invoicing_dashboard
+#. odoo-javascript
+#: code:addons/custom_invoicing_dashboard/static/src/invoicing_dashboard.js:0
+msgid "+ Quote"
+msgstr "+ Devis"
+
+#. module: custom_invoicing_dashboard
+#. odoo-javascript
+#: code:addons/custom_invoicing_dashboard/static/src/invoicing_dashboard.js:0
+msgid "Recent invoices"
+msgstr "Factures récentes"
+
+#. module: custom_invoicing_dashboard
+#. odoo-javascript
+#: code:addons/custom_invoicing_dashboard/static/src/invoicing_dashboard.js:0
+msgid "Recent quotes"
+msgstr "Devis récents"
+
+#. module: custom_invoicing_dashboard
+#. odoo-javascript
+#: code:addons/custom_invoicing_dashboard/static/src/invoicing_dashboard.js:0
+msgid "Customer"
+msgstr "Client"
+
+#. module: custom_invoicing_dashboard
+#. odoo-javascript
+#: code:addons/custom_invoicing_dashboard/static/src/invoicing_dashboard.js:0
+msgid "Date"
+msgstr "Date"
+
+#. module: custom_invoicing_dashboard
+#. odoo-javascript
+#: code:addons/custom_invoicing_dashboard/static/src/invoicing_dashboard.js:0
+msgid "Total"
+msgstr "Total"
+
+#. module: custom_invoicing_dashboard
+#. odoo-javascript
+#: code:addons/custom_invoicing_dashboard/static/src/invoicing_dashboard.js:0
+msgid "Status"
+msgstr "État"
+
+#. module: custom_invoicing_dashboard
+#. odoo-javascript
+#: code:addons/custom_invoicing_dashboard/static/src/invoicing_dashboard.js:0
+msgid "No invoices yet."
+msgstr "Aucune facture pour le moment."
+
+#. module: custom_invoicing_dashboard
+#. odoo-javascript
+#: code:addons/custom_invoicing_dashboard/static/src/invoicing_dashboard.js:0
+msgid "No quotes yet."
+msgstr "Aucun devis pour le moment."
+
+#. module: custom_invoicing_dashboard
+#. odoo-javascript
+#: code:addons/custom_invoicing_dashboard/static/src/invoicing_dashboard.js:0
+msgid "Could not load dashboard data."
+msgstr "Impossible de charger les données du tableau de bord."
+
+#. module: custom_invoicing_dashboard
+#: model:ir.module.module,shortdesc:base.module_custom_invoicing_dashboard
+msgid "Custom Invoicing Dashboard"
+msgstr "Tableau de bord facturation personnalisé"
+
+#. module: custom_invoicing_dashboard
+#: model:ir.module.module,summary:base.module_custom_invoicing_dashboard
+msgid "Minimal invoicing and quotations dashboard"
+msgstr "Tableau de bord minimal pour factures et devis"

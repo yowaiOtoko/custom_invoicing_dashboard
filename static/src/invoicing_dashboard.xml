@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="custom_invoicing_dashboard.InvoicingDashboard">
+        <div class="o_invoicing_dashboard o_action h-100 overflow-auto bg-view">
+            <div class="container py-4 py-md-5">
+                <style type="text/css">
+                    .o_invoicing_dashboard { --o-accent: #635bff; --o-surface: #f6f9fc; }
+                    .o_invoicing_dashboard .o_kpi-card {
+                        background: #fff; border-radius: 0.75rem; box-shadow: 0 1px 3px rgba(0,0,0,.08);
+                        padding: 1.25rem 1.5rem; height: 100%; border: 1px solid rgba(0,0,0,.06);
+                    }
+                    .o_invoicing_dashboard .o_kpi-label { font-size: 0.8125rem; color: #697386; font-weight: 500; letter-spacing: .02em; }
+                    .o_invoicing_dashboard .o_kpi-value { font-size: 1.75rem; font-weight: 600; color: #0a2540; margin-top: .35rem; }
+                    .o_invoicing_dashboard .o_action-btn {
+                        display: block; width: 100%; text-align: center; padding: 1rem 1.25rem; font-size: 1.05rem;
+                        font-weight: 600; border-radius: 0.65rem; border: none;
+                        transition: transform .12s ease, box-shadow .12s ease;
+                    }
+                    .o_invoicing_dashboard .o_action-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(99,91,255,.25); color: #fff; }
+                    .o_invoicing_dashboard .o_action-invoice { background: var(--o-accent); color: #fff; }
+                    .o_invoicing_dashboard .o_action-quote { background: #0a2540; color: #fff; }
+                    .o_invoicing_dashboard .o_section-title { font-size: 1rem; font-weight: 600; color: #0a2540; margin-bottom: .75rem; }
+                    .o_invoicing_dashboard .table thead th { font-size: 0.75rem; text-transform: uppercase; letter-spacing: .04em; color: #697386; border-bottom-width: 1px; }
+                    .o_invoicing_dashboard .table td { vertical-align: middle; font-size: 0.9375rem; }
+                    .o_invoicing_dashboard .o_page-title { font-size: 1.5rem; font-weight: 600; color: #0a2540; margin-bottom: 1.5rem; }
+                </style>
+                <t t-if="state.error">
+                    <div class="alert alert-danger" role="alert" t-esc="state.error"/>
+                </t>
+                <t t-elif="state.data === null">
+                    <div class="text-muted" t-esc="labels.loading"/>
+                </t>
+                <t t-else="">
+                    <h1 class="o_page-title" t-esc="labels.title"/>
+                    <div class="row g-3 mb-4">
+                        <div class="col-12 col-md-4">
+                            <div class="o_kpi-card">
+                                <div class="o_kpi-label" t-esc="labels.totalRevenue"/>
+                                <div class="o_kpi-value" t-esc="state.data.total_revenue_label"/>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="o_kpi-card">
+                                <div class="o_kpi-label" t-esc="labels.unpaidInvoices"/>
+                                <div class="o_kpi-value" t-esc="state.data.unpaid_count"/>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="o_kpi-card">
+                                <div class="o_kpi-label" t-esc="labels.draftQuotes"/>
+                                <div class="o_kpi-value" t-esc="state.data.draft_quotes_count"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row g-3 mb-5">
+                        <div class="col-12 col-sm-6">
+                            <button type="button" class="o_action-btn o_action-invoice" t-on-click="openInvoiceAction" t-esc="labels.addInvoice"/>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                            <button type="button" class="o_action-btn o_action-quote" t-on-click="openQuoteAction" t-esc="labels.addQuote"/>
+                        </div>
+                    </div>
+                    <div class="row g-4">
+                        <div class="col-12 col-lg-6">
+                            <div class="o_section-title" t-esc="labels.recentInvoices"/>
+                            <div class="table-responsive rounded-3 border bg-white shadow-sm">
+                                <table class="table table-hover mb-0">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th t-esc="labels.colCustomer"/>
+                                            <th t-esc="labels.colDate"/>
+                                            <th class="text-end" t-esc="labels.colTotal"/>
+                                            <th t-esc="labels.colStatus"/>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-if="state.data.recent_invoices.length === 0">
+                                            <tr><td colspan="4" class="text-muted py-4 text-center" t-esc="labels.noInvoices"/></tr>
+                                        </t>
+                                        <tr t-foreach="state.data.recent_invoices" t-as="row" t-key="row_index">
+                                            <td t-esc="row.partner_name"/>
+                                            <td t-esc="row.date_label"/>
+                                            <td class="text-end" t-esc="row.amount_label"/>
+                                            <td><span class="badge rounded-pill text-bg-light border" t-esc="row.state_label"/></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <div class="o_section-title" t-esc="labels.recentQuotes"/>
+                            <div class="table-responsive rounded-3 border bg-white shadow-sm">
+                                <table class="table table-hover mb-0">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th t-esc="labels.colCustomer"/>
+                                            <th t-esc="labels.colDate"/>
+                                            <th class="text-end" t-esc="labels.colTotal"/>
+                                            <th t-esc="labels.colStatus"/>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-if="state.data.recent_quotes.length === 0">
+                                            <tr><td colspan="4" class="text-muted py-4 text-center" t-esc="labels.noQuotes"/></tr>
+                                        </t>
+                                        <tr t-foreach="state.data.recent_quotes" t-as="row" t-key="row_index">
+                                            <td t-esc="row.partner_name"/>
+                                            <td t-esc="row.date_label"/>
+                                            <td class="text-end" t-esc="row.amount_label"/>
+                                            <td><span class="badge rounded-pill text-bg-light border" t-esc="row.state_label"/></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </div>
+        </div>
+    </t>
+</templates>
