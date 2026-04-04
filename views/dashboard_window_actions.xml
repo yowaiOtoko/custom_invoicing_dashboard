@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_invoice_out_form_create" model="ir.actions.act_window">
+        <field name="name">Customer Invoice</field>
+        <field name="res_model">account.move</field>
+        <field name="view_mode">form</field>
+        <field name="context">{'default_move_type': 'out_invoice'}</field>
+        <field name="target">current</field>
+    </record>
+    <record id="action_sale_order_quotation_form_create" model="ir.actions.act_window">
+        <field name="name">Quotation</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_mode">form</field>
+        <field name="context">{'default_state': 'draft'}</field>
+        <field name="target">current</field>
+    </record>
+</odoo>

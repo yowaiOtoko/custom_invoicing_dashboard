@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_company_form_inherit_invoicing_dashboard" model="ir.ui.view">
+        <field name="name">res.company.form.inherit.invoicing_dashboard</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="account.view_company_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='general_info']" position="after">
+                <page string="Invoicing setup" name="invo_provisioning">
+                    <group>
+                        <group string="Identification">
+                            <field name="company_registry"/>
+                            <field name="vat"/>
+                        </group>
+                        <group string="Address">
+                            <label for="street" string="Address"/>
+                            <div class="o_address_format">
+                                <field name="street" placeholder="Street..." class="o_address_street"/>
+                                <field name="street2" placeholder="Street 2..." class="o_address_street"/>
+                                <field name="city" placeholder="City" class="o_address_city"/>
+                                <field name="state_id" class="o_address_state" placeholder="State" options='{"no_open": True}'/>
+                                <field name="zip" placeholder="ZIP" class="o_address_zip"/>
+                                <field name="country_id" placeholder="Country" class="o_address_country" options='{"no_open": True, "no_create": True}'/>
+                            </div>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Contact">
+                            <field name="email"/>
+                            <field name="phone" widget="phone"/>
+                        </group>
+                        <group string="Document defaults">
+                            <field name="currency_id" options="{'no_create': True, 'no_open': True}" context="{'active_test': False}"/>
+                        </group>
+                    </group>
+                    <group string="Taxes">
+                        <field name="account_sale_tax_id"/>
+                        <field name="account_purchase_tax_id"/>
+                    </group>
+                    <group string="Quotations">
+                        <field name="quotation_validity_days"/>
+                    </group>
+                    <group string="Bank accounts">
+                        <field name="bank_ids" nolabel="1" colspan="2" context="{'default_partner_id': partner_id}"/>
+                    </group>
+                    <group string="Invoice display">
+                        <field name="qr_code"/>
+                    </group>
+                    <group string="Legal text on documents">
+                        <field name="report_footer" colspan="2" nolabel="1"/>
+                    </group>
+                    <group string="Default terms on invoices">
+                        <field name="terms_type" colspan="2"/>
+                        <field name="invoice_terms" colspan="2" nolabel="1" widget="html" invisible="terms_type != 'plain'"/>
+                        <field name="invoice_terms_html" colspan="2" nolabel="1" widget="html" class="oe_account_terms" invisible="terms_type != 'html'"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

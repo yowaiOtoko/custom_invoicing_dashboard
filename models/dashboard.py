@@ -84,6 +84,7 @@ class CustomInvoicingDashboard(models.AbstractModel):
         for move in recent_moves:
             partner = move.partner_id
             recent_invoices.append({
+                'id': move.id,
                 'name': move.name or '',
                 'partner_name': partner.display_name if partner else '',
                 'date_label': format_date(env, move.invoice_date) if move.invoice_date else '',
@@ -105,6 +106,7 @@ class CustomInvoicingDashboard(models.AbstractModel):
         for order in recent_orders:
             partner = order.partner_id
             recent_quotes.append({
+                'id': order.id,
                 'name': order.name or '',
                 'partner_name': partner.display_name if partner else '',
                 'date_label': format_date(env, order.date_order) if order.date_order else '',
@@ -113,8 +115,9 @@ class CustomInvoicingDashboard(models.AbstractModel):
                 'state_label': self._sale_state_label(order.state),
             })
 
-        invoice_action = env.ref('account.action_move_out_invoice_type')
-        quote_action = env.ref('sale.action_quotations')
+        invoice_action = env.ref('custom_invoicing_dashboard.action_invoice_out_form_create')
+        quote_action = env.ref('custom_invoicing_dashboard.action_sale_order_quotation_form_create')
+        show_company_settings = env.user.has_group('base.group_system')
 
         return {
             'total_revenue_label': self._format_money(total_revenue),
@@ -124,4 +127,20 @@ class CustomInvoicingDashboard(models.AbstractModel):
             'recent_quotes': recent_quotes,
             'invoice_action_id': invoice_action.id,
             'quote_action_id': quote_action.id,
+            'show_company_settings': show_company_settings,
+        }
+
+    @api.model
+    def action_open_company_settings(self):
+        self._check_dashboard_access()
+        if not self.env.user.has_group('base.group_system'):
+            raise AccessError(self.env._('Only administrators can open company settings.'))
+        company = self.env.company
+        return {
+            'type': 'ir.actions.act_window',
+            'name': self.env._('Company'),
+            'res_model': 'res.company',
+            'res_id': company.id,
+            'view_mode': 'form',
+            'target': 'current',
         }

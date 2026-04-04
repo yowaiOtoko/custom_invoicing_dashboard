@@ -1,12 +1,14 @@
 {
     'name': 'Custom Invoicing Dashboard',
-    'version': '19.0.2.0.0',
+    'version': '19.0.2.0.2',
     'category': 'Accounting',
     'summary': 'Minimal invoicing and quotations dashboard',
     'license': 'LGPL-3',
     'depends': ['account', 'sale', 'web'],
     'data': [
         'security/ir.model.access.csv',
+        'views/dashboard_window_actions.xml',
+        'views/res_company_views.xml',
         'views/invoicing_dashboard_menu.xml',
     ],
     'assets': {

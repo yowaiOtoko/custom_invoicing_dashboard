@@ -12,6 +12,7 @@ export class InvoicingDashboard extends Component {
     setup() {
         this.orm = useService("orm");
         this.action = useService("action");
+        this.notification = useService("notification");
         this.labels = {
             loading: _t("Loading…"),
             title: _t("Invoicing dashboard"),
@@ -28,6 +29,7 @@ export class InvoicingDashboard extends Component {
             colStatus: _t("Status"),
             noInvoices: _t("No invoices yet."),
             noQuotes: _t("No quotes yet."),
+            companySettings: _t("Company settings"),
         };
         this.state = useState({
             data: null,
@@ -55,6 +57,47 @@ export class InvoicingDashboard extends Component {
     openQuoteAction() {
         if (this.state.data?.quote_action_id) {
             this.action.doAction(this.state.data.quote_action_id);
+        }
+    }
+
+    openInvoiceRow(ev) {
+        const id = parseInt(ev.currentTarget.dataset.moveId, 10);
+        if (!id) {
+            return;
+        }
+        this.action.doAction({
+            type: "ir.actions.act_window",
+            res_model: "account.move",
+            res_id: id,
+            views: [[false, "form"]],
+            target: "current",
+        });
+    }
+
+    openQuoteRow(ev) {
+        const id = parseInt(ev.currentTarget.dataset.orderId, 10);
+        if (!id) {
+            return;
+        }
+        this.action.doAction({
+            type: "ir.actions.act_window",
+            res_model: "sale.order",
+            res_id: id,
+            views: [[false, "form"]],
+            target: "current",
+        });
+    }
+
+    async openCompanySettings() {
+        try {
+            const action = await this.orm.call(
+                "custom_invoicing_dashboard.dashboard",
+                "action_open_company_settings",
+                []
+            );
+            this.action.doAction(action);
+        } catch {
+            this.notification.add(_t("Could not open company settings."), { type: "danger" });
         }
     }
 }

@@ -124,8 +124,97 @@ msgstr "Aucun devis pour le moment."
 #. module: custom_invoicing_dashboard
 #. odoo-javascript
 #: code:addons/custom_invoicing_dashboard/static/src/invoicing_dashboard.js:0
+msgid "Company settings"
+msgstr "Paramètres société"
+
+#. module: custom_invoicing_dashboard
+#. odoo-javascript
+#: code:addons/custom_invoicing_dashboard/static/src/invoicing_dashboard.js:0
+msgid "Could not open company settings."
+msgstr "Impossible d'ouvrir les paramètres société."
+
+#. module: custom_invoicing_dashboard
+#. odoo-javascript
+#: code:addons/custom_invoicing_dashboard/static/src/invoicing_dashboard.js:0
 msgid "Could not load dashboard data."
 msgstr "Impossible de charger les données du tableau de bord."
+
+#. module: custom_invoicing_dashboard
+#. odoo-python
+#: code:addons/custom_invoicing_dashboard/models/dashboard.py:0
+msgid "Only administrators can open company settings."
+msgstr "Seuls les administrateurs peuvent ouvrir les paramètres société."
+
+#. module: custom_invoicing_dashboard
+#. odoo-python
+#: code:addons/custom_invoicing_dashboard/models/dashboard.py:0
+msgid "Company"
+msgstr "Société"
+
+#. module: custom_invoicing_dashboard
+#: model:ir.actions.act_window,name:custom_invoicing_dashboard.action_invoice_out_form_create
+msgid "Customer Invoice"
+msgstr "Facture client"
+
+#. module: custom_invoicing_dashboard
+#: model:ir.actions.act_window,name:custom_invoicing_dashboard.action_sale_order_quotation_form_create
+msgid "Quotation"
+msgstr "Devis"
+
+#. module: custom_invoicing_dashboard
+#: model_terms:ir.ui.view,arch_db:custom_invoicing_dashboard.view_company_form_inherit_invoicing_dashboard
+msgid "Invoicing setup"
+msgstr "Paramétrage facturation"
+
+#. module: custom_invoicing_dashboard
+#: model_terms:ir.ui.view,arch_db:custom_invoicing_dashboard.view_company_form_inherit_invoicing_dashboard
+msgid "Identification"
+msgstr "Identification"
+
+#. module: custom_invoicing_dashboard
+#: model_terms:ir.ui.view,arch_db:custom_invoicing_dashboard.view_company_form_inherit_invoicing_dashboard
+msgid "Address"
+msgstr "Adresse"
+
+#. module: custom_invoicing_dashboard
+#: model_terms:ir.ui.view,arch_db:custom_invoicing_dashboard.view_company_form_inherit_invoicing_dashboard
+msgid "Contact"
+msgstr "Contact"
+
+#. module: custom_invoicing_dashboard
+#: model_terms:ir.ui.view,arch_db:custom_invoicing_dashboard.view_company_form_inherit_invoicing_dashboard
+msgid "Document defaults"
+msgstr "Paramètres des documents"
+
+#. module: custom_invoicing_dashboard
+#: model_terms:ir.ui.view,arch_db:custom_invoicing_dashboard.view_company_form_inherit_invoicing_dashboard
+msgid "Taxes"
+msgstr "Taxes"
+
+#. module: custom_invoicing_dashboard
+#: model_terms:ir.ui.view,arch_db:custom_invoicing_dashboard.view_company_form_inherit_invoicing_dashboard
+msgid "Quotations"
+msgstr "Devis"
+
+#. module: custom_invoicing_dashboard
+#: model_terms:ir.ui.view,arch_db:custom_invoicing_dashboard.view_company_form_inherit_invoicing_dashboard
+msgid "Bank accounts"
+msgstr "Comptes bancaires"
+
+#. module: custom_invoicing_dashboard
+#: model_terms:ir.ui.view,arch_db:custom_invoicing_dashboard.view_company_form_inherit_invoicing_dashboard
+msgid "Invoice display"
+msgstr "Affichage sur facture"
+
+#. module: custom_invoicing_dashboard
+#: model_terms:ir.ui.view,arch_db:custom_invoicing_dashboard.view_company_form_inherit_invoicing_dashboard
+msgid "Legal text on documents"
+msgstr "Mentions légales sur les documents"
+
+#. module: custom_invoicing_dashboard
+#: model_terms:ir.ui.view,arch_db:custom_invoicing_dashboard.view_company_form_inherit_invoicing_dashboard
+msgid "Default terms on invoices"
+msgstr "Conditions par défaut sur les factures"
 
 #. module: custom_invoicing_dashboard
 #: model:ir.module.module,shortdesc:base.module_custom_invoicing_dashboard
