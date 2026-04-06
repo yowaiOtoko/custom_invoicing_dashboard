@@ -2,6 +2,8 @@
     'name': 'Custom Invoicing Dashboard',
     'version': '19.0.2.0.2',
     'category': 'Accounting',
+    'author': 'Invo Facturation',
+    'website': 'https://invo-facturation.fr',
     'summary': 'Minimal invoicing and quotations dashboard',
     'license': 'LGPL-3',
     'depends': ['account', 'sale', 'web'],
