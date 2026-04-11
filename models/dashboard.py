@@ -141,6 +141,6 @@ class CustomInvoicingDashboard(models.AbstractModel):
             'name': self.env._('Company'),
             'res_model': 'res.company',
             'res_id': company.id,
-            'view_mode': 'form',
+            'views': [[False, 'form']],
             'target': 'current',
         }
