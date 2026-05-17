@@ -71,6 +71,7 @@
                                 <table class="table table-hover mb-0">
                                     <thead class="table-light">
                                         <tr>
+                                            <th t-esc="labels.colNumber"/>
                                             <th t-esc="labels.colCustomer"/>
                                             <th t-esc="labels.colDate"/>
                                             <th class="text-end" t-esc="labels.colTotal"/>
@@ -82,6 +83,7 @@
                                             <tr><td colspan="4" class="text-muted py-4 text-center" t-esc="labels.noInvoices"/></tr>
                                         </t>
                                         <tr t-foreach="state.data.recent_invoices" t-as="row" t-key="row.id" class="o_invoice-row" t-att-data-move-id="row.id" t-on-click="openInvoiceRow">
+                                            <td t-esc="row.name"/>
                                             <td t-esc="row.partner_name"/>
                                             <td t-esc="row.date_label"/>
                                             <td class="text-end" t-esc="row.amount_label"/>
@@ -97,6 +99,7 @@
                                 <table class="table table-hover mb-0">
                                     <thead class="table-light">
                                         <tr>
+                                            <th t-esc="labels.colNumber"/>
                                             <th t-esc="labels.colCustomer"/>
                                             <th t-esc="labels.colDate"/>
                                             <th class="text-end" t-esc="labels.colTotal"/>
@@ -108,6 +111,7 @@
                                             <tr><td colspan="4" class="text-muted py-4 text-center" t-esc="labels.noQuotes"/></tr>
                                         </t>
                                         <tr t-foreach="state.data.recent_quotes" t-as="row" t-key="row.id" class="o_invoice-row" t-att-data-order-id="row.id" t-on-click="openQuoteRow">
+                                            <td t-esc="row.name"/>
                                             <td t-esc="row.partner_name"/>
                                             <td t-esc="row.date_label"/>
                                             <td class="text-end" t-esc="row.amount_label"/>

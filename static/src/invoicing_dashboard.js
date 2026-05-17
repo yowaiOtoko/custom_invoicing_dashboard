@@ -23,6 +23,7 @@ export class InvoicingDashboard extends Component {
             addQuote: _t("+ Quote"),
             recentInvoices: _t("Recent invoices"),
             recentQuotes: _t("Recent quotes"),
+            colNumber: _t("Number"),
             colCustomer: _t("Customer"),
             colDate: _t("Date"),
             colTotal: _t("Total"),
