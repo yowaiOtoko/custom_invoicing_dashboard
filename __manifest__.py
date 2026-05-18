@@ -1,6 +1,6 @@
 {
     'name': 'Custom Invoicing Dashboard',
-    'version': '19.0.2.0.2',
+    'version': '19.0.2.0.3',
     'category': 'Accounting',
     'author': 'Invo Facturation',
     'website': 'https://invo-facturation.fr',
