@@ -26,6 +26,12 @@ class CustomInvoicingDashboard(models.AbstractModel):
             ('state', '=', 'posted'),
         ]
 
+    def _invoice_list_domain(self):
+        return self._company_domain() + [
+            ('move_type', '=', 'out_invoice'),
+            ('state', 'in', ('draft', 'posted')),
+        ]
+
     def _unpaid_payment_states(self):
         return ('not_paid', 'partial', 'in_payment', 'blocked')
 
@@ -76,7 +82,7 @@ class CustomInvoicingDashboard(models.AbstractModel):
             draft_quotes_count = 0
 
         recent_moves = Move.search(
-            invoice_domain,
+            self._invoice_list_domain(),
             limit=5,
             order='invoice_date desc, id desc',
         )
