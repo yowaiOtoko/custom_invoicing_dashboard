@@ -2,11 +2,12 @@
     'name': 'Custom Invoicing Dashboard',
     'version': '19.0.2.0.3',
     'category': 'Accounting',
-    'author': 'Invo Facturation',
+    'author': 'yowaiOtoko',
     'website': 'https://invo-facturation.fr',
     'summary': 'Minimal invoicing and quotations dashboard',
+    'description': 'Backend dashboard for invoicing and quotations with KPI cards, quick actions, and recent documents.',
     'license': 'LGPL-3',
-    'depends': ['account', 'sale', 'web'],
+    'depends': ['base', 'account', 'sale', 'web'],
     'data': [
         'security/ir.model.access.csv',
         'views/dashboard_window_actions.xml',
@@ -21,5 +22,7 @@
     },
     'post_init_hook': 'post_init_hook',
     'installable': True,
+    'auto_install': False,
     'application': False,
+    'sequence': 1,
 }
