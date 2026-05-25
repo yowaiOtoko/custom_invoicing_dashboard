@@ -9,6 +9,16 @@ export class InvoicingDashboard extends Component {
     static template = "custom_invoicing_dashboard.InvoicingDashboard";
     static props = ["*"];
 
+    badgeClass(row, type) {
+        if (type === "invoice" && row.state === "paid") {
+            return "badge rounded-pill o_status-badge o_status-badge-success";
+        }
+        if (type === "quote" && row.state === "sent") {
+            return "badge rounded-pill o_status-badge o_status-badge-info";
+        }
+        return "badge rounded-pill o_status-badge o_status-badge-neutral";
+    }
+
     setup() {
         this.orm = useService("orm");
         this.action = useService("action");

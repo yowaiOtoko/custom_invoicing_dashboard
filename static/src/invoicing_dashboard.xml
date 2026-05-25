@@ -24,6 +24,10 @@
                     .o_invoicing_dashboard .table td { vertical-align: middle; font-size: 0.9375rem; }
                     .o_invoicing_dashboard .o_page-title { font-size: 1.5rem; font-weight: 600; color: #0a2540; margin-bottom: 1.5rem; }
                     .o_invoicing_dashboard .o_invoice-row { cursor: pointer; }
+                    .o_invoicing_dashboard .o_status-badge { border: 1px solid transparent; }
+                    .o_invoicing_dashboard .o_status-badge-neutral { background: #f8fafc; border-color: #d0d7de; color: #52606d; }
+                    .o_invoicing_dashboard .o_status-badge-success { background: #dcfce7; border-color: #86efac; color: #166534; }
+                    .o_invoicing_dashboard .o_status-badge-info { background: #dbeafe; border-color: #93c5fd; color: #1d4ed8; }
                 </style>
                 <t t-if="state.error">
                     <div class="alert alert-danger" role="alert" t-esc="state.error"/>
@@ -87,7 +91,7 @@
                                             <td t-esc="row.partner_name"/>
                                             <td t-esc="row.date_label"/>
                                             <td class="text-end" t-esc="row.amount_label"/>
-                                            <td><span class="badge rounded-pill text-bg-light border" t-esc="row.state_label"/></td>
+                                            <td><span t-att-class="badgeClass(row, 'invoice')" t-esc="row.state_label"/></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -115,7 +119,7 @@
                                             <td t-esc="row.partner_name"/>
                                             <td t-esc="row.date_label"/>
                                             <td class="text-end" t-esc="row.amount_label"/>
-                                            <td><span class="badge rounded-pill text-bg-light border" t-esc="row.state_label"/></td>
+                                            <td><span t-att-class="badgeClass(row, 'quote')" t-esc="row.state_label"/></td>
                                         </tr>
                                     </tbody>
                                 </table>
