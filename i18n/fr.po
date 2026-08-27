@@ -225,3 +225,153 @@ msgstr "Tableau de bord facturation personnalisé"
 #: model:ir.module.module,summary:base.module_custom_invoicing_dashboard
 msgid "Minimal invoicing and quotations dashboard"
 msgstr "Tableau de bord minimal pour factures et devis"
+
+#. module: custom_invoicing_dashboard
+#. odoo-javascript
+#: code:addons/custom_invoicing_dashboard/static/src/export_comptable.js:0
+msgid "Back to dashboard"
+msgstr "Retour au tableau de bord"
+
+#. module: custom_invoicing_dashboard
+#. odoo-javascript
+#: code:addons/custom_invoicing_dashboard/static/src/export_comptable.js:0
+msgid "Period"
+msgstr "Période"
+
+#. module: custom_invoicing_dashboard
+#. odoo-javascript
+#: code:addons/custom_invoicing_dashboard/static/src/export_comptable.js:0
+msgid "Export"
+msgstr "Exporter"
+
+#. module: custom_invoicing_dashboard
+#. odoo-javascript
+#: code:addons/custom_invoicing_dashboard/static/src/export_comptable.js:0
+msgid "Year"
+msgstr "Année"
+
+#. module: custom_invoicing_dashboard
+#. odoo-javascript
+#: code:addons/custom_invoicing_dashboard/static/src/export_comptable.js:0
+msgid "From"
+msgstr "Du"
+
+#. module: custom_invoicing_dashboard
+#. odoo-javascript
+#: code:addons/custom_invoicing_dashboard/static/src/export_comptable.js:0
+msgid "To"
+msgstr "Au"
+
+#. module: custom_invoicing_dashboard
+#. odoo-javascript
+#: code:addons/custom_invoicing_dashboard/static/src/export_comptable.js:0
+msgid "invoices"
+msgstr "factures"
+
+#. module: custom_invoicing_dashboard
+#. odoo-javascript
+#: code:addons/custom_invoicing_dashboard/static/src/export_comptable.js:0
+msgid "No posted customer invoice in this period."
+msgstr "Aucune facture client comptabilisée sur cette période."
+
+#. module: custom_invoicing_dashboard
+#. odoo-javascript
+#: code:addons/custom_invoicing_dashboard/static/src/export_comptable.js:0
+msgid "Please select a valid date range."
+msgstr "Veuillez sélectionner une période valide."
+
+#. module: custom_invoicing_dashboard
+#. odoo-javascript
+#: code:addons/custom_invoicing_dashboard/static/src/export_comptable.js:0
+msgid "Export failed."
+msgstr "Échec de l'export."
+
+#. module: custom_invoicing_dashboard
+#. odoo-javascript
+#: code:addons/custom_invoicing_dashboard/static/src/export_comptable.js:0
+msgid "Could not load export page."
+msgstr "Impossible de charger la page d'export."
+
+#. module: custom_invoicing_dashboard
+#. odoo-javascript
+#: code:addons/custom_invoicing_dashboard/static/src/export_comptable.js:0
+msgid "PDF (invoices)"
+msgstr "PDF (factures)"
+
+#. module: custom_invoicing_dashboard
+#. odoo-javascript
+#: code:addons/custom_invoicing_dashboard/static/src/export_comptable.js:0
+msgid "FEC + PDFs (zip)"
+msgstr "FEC + PDF (zip)"
+
+#. module: custom_invoicing_dashboard
+#. odoo-javascript
+#: code:addons/custom_invoicing_dashboard/static/src/export_comptable.js:0
+msgid "Current year"
+msgstr "Année en cours"
+
+#. module: custom_invoicing_dashboard
+#. odoo-javascript
+#: code:addons/custom_invoicing_dashboard/static/src/export_comptable.js:0
+msgid "Previous year"
+msgstr "Année précédente"
+
+#. module: custom_invoicing_dashboard
+#. odoo-javascript
+#: code:addons/custom_invoicing_dashboard/static/src/export_comptable.js:0
+msgid "Year to date"
+msgstr "Depuis le début de l'année"
+
+#. module: custom_invoicing_dashboard
+#. odoo-javascript
+#: code:addons/custom_invoicing_dashboard/static/src/export_comptable.js:0
+msgid "Last 6 months"
+msgstr "6 derniers mois"
+
+#. module: custom_invoicing_dashboard
+#. odoo-javascript
+#: code:addons/custom_invoicing_dashboard/static/src/export_comptable.js:0
+msgid "Specific year"
+msgstr "Année spécifique"
+
+#. module: custom_invoicing_dashboard
+#. odoo-javascript
+#: code:addons/custom_invoicing_dashboard/static/src/export_comptable.js:0
+msgid "Custom range"
+msgstr "Période personnalisée"
+
+#. module: custom_invoicing_dashboard
+#. odoo-python
+#: code:addons/custom_invoicing_dashboard/models/accounting_export.py:0
+msgid "You are not allowed to access this export."
+msgstr "Vous n'êtes pas autorisé à accéder à cet export."
+
+#. module: custom_invoicing_dashboard
+#. odoo-python
+#: code:addons/custom_invoicing_dashboard/models/accounting_export.py:0
+msgid "Both start and end dates are required."
+msgstr "Les dates de début et de fin sont obligatoires."
+
+#. module: custom_invoicing_dashboard
+#. odoo-python
+#: code:addons/custom_invoicing_dashboard/models/accounting_export.py:0
+msgid "The start date must be before the end date."
+msgstr "La date de début doit être antérieure à la date de fin."
+
+#. module: custom_invoicing_dashboard
+#. odoo-python
+#: code:addons/custom_invoicing_dashboard/models/accounting_export.py:0
+msgid "No invoice in the selected period."
+msgstr "Aucune facture sur la période sélectionnée."
+
+#. module: custom_invoicing_dashboard
+#. odoo-python
+#: code:addons/custom_invoicing_dashboard/models/accounting_export.py:0
+msgid "The 'xlsxwriter' Python library is required for the XLSX export."
+msgstr "La bibliothèque Python 'xlsxwriter' est requise pour l'export XLSX."
+
+#. module: custom_invoicing_dashboard
+#. odoo-python
+#: code:addons/custom_invoicing_dashboard/models/accounting_export.py:0
+msgid "Unknown export format."
+msgstr "Format d'export inconnu."

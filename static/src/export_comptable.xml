@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="custom_invoicing_dashboard.ExportComptable">
+        <div class="o_export_comptable o_action h-100 overflow-auto bg-view">
+            <div class="container py-4 py-md-5">
+                <style type="text/css">
+                    .o_export_comptable { --o-accent: #635bff; --o-surface: #f6f9fc; }
+                    .o_export_comptable .o_kpi-card {
+                        background: #fff; border-radius: 0.75rem; box-shadow: 0 1px 3px rgba(0,0,0,.08);
+                        padding: 1.25rem 1.5rem; height: 100%; border: 1px solid rgba(0,0,0,.06);
+                    }
+                    .o_export_comptable .o_section-title { font-size: 1rem; font-weight: 600; color: #0a2540; margin-bottom: .75rem; }
+                    .o_export_comptable .o_page-title { font-size: 1.5rem; font-weight: 600; color: #0a2540; margin-bottom: 1.5rem; }
+                    .o_export_comptable .o_preset-btn, .o_export_comptable .o_format-btn {
+                        width: 100%; text-align: left; border: 1px solid #d0d7de; border-radius: .5rem;
+                        padding: .6rem .9rem; background: #fff; color: #0a2540; font-weight: 500;
+                        transition: border-color .12s ease, background .12s ease, color .12s ease;
+                    }
+                    .o_export_comptable .o_preset-btn:hover, .o_export_comptable .o_format-btn:hover { border-color: var(--o-accent); }
+                    .o_export_comptable .o_preset-btn.active, .o_export_comptable .o_format-btn.active {
+                        border-color: var(--o-accent); background: rgba(99,91,255,.08); color: var(--o-accent);
+                    }
+                    .o_export_comptable .o_export-btn {
+                        display: block; width: 100%; padding: 1rem 1.25rem; font-size: 1.05rem; font-weight: 600;
+                        border-radius: .65rem; border: none; background: var(--o-accent); color: #fff;
+                        transition: transform .12s ease, box-shadow .12s ease;
+                    }
+                    .o_export_comptable .o_export-btn:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(99,91,255,.25); }
+                    .o_export_comptable .o_export-btn:disabled { opacity: .6; }
+                </style>
+                <t t-if="state.error">
+                    <div class="alert alert-danger" role="alert" t-esc="state.error"/>
+                </t>
+                <t t-elif="state.data === null">
+                    <div class="text-muted" t-esc="labels.loading"/>
+                </t>
+                <t t-else="">
+                    <div class="d-flex flex-wrap justify-content-between align-items-start gap-2 mb-3">
+                        <h1 class="o_page-title mb-0" t-esc="labels.title"/>
+                        <button type="button" class="btn btn-outline-secondary btn-sm align-self-center" t-on-click="goBack" t-esc="labels.back"/>
+                    </div>
+                    <div class="row g-4">
+                        <div class="col-12 col-lg-6">
+                            <div class="o_kpi-card">
+                                <div class="o_section-title" t-esc="labels.period"/>
+                                <div class="row g-2">
+                                    <div t-foreach="presets" t-as="preset" t-key="preset.value" class="col-12 col-sm-6">
+                                        <button type="button"
+                                                t-att-class="preset.value === state.preset ? 'o_preset-btn active' : 'o_preset-btn'"
+                                                t-att-data-preset="preset.value"
+                                                t-on-click="setPreset"
+                                                t-esc="preset.label"/>
+                                    </div>
+                                </div>
+                                <div class="mt-3" t-if="state.preset === 'specific_year'">
+                                    <label class="form-label small text-muted" t-esc="labels.year"/>
+                                    <select class="form-select" t-on-change="onYearChange">
+                                        <t t-foreach="years" t-as="y" t-key="y">
+                                            <option t-att-value="y" t-att-selected="y === state.year ? 'selected' : undefined" t-esc="y"/>
+                                        </t>
+                                    </select>
+                                </div>
+                                <div class="mt-3" t-if="state.preset === 'custom'">
+                                    <div class="row g-2">
+                                        <div class="col-6">
+                                            <label class="form-label small text-muted" t-esc="labels.from"/>
+                                            <input type="date" class="form-control" t-model="state.date_from" t-on-change="onDateChange"/>
+                                        </div>
+                                        <div class="col-6">
+                                            <label class="form-label small text-muted" t-esc="labels.to"/>
+                                            <input type="date" class="form-control" t-model="state.date_to" t-on-change="onDateChange"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <div class="o_kpi-card">
+                                <div class="o_section-title" t-esc="labels.format"/>
+                                <div class="row g-2">
+                                    <div t-foreach="formats" t-as="format" t-key="format.value" class="col-12 col-sm-6">
+                                        <button type="button"
+                                                t-att-class="format.value === state.format ? 'o_format-btn active' : 'o_format-btn'"
+                                                t-att-data-format="format.value"
+                                                t-on-click="setFormat"
+                                                t-esc="format.label"/>
+                                    </div>
+                                </div>
+                                <div class="mt-3">
+                                    <button type="button" class="o_export-btn" t-att-disabled="state.exporting" t-on-click="exportFile">
+                                        <span t-if="state.exporting" t-esc="labels.loading"/>
+                                        <span t-else="" t-esc="labels.export"/>
+                                    </button>
+                                </div>
+                                <div class="mt-3 small text-muted d-flex justify-content-between">
+                                    <span t-if="rangeLabel" t-esc="rangeLabel"/>
+                                    <span t-if="countLabel" t-esc="countLabel"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </div>
+        </div>
+    </t>
+</templates>

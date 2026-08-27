@@ -41,6 +41,7 @@ export class InvoicingDashboard extends Component {
             noInvoices: _t("No invoices yet."),
             noQuotes: _t("No quotes yet."),
             companySettings: _t("Company settings"),
+            exportComptable: _t("Export comptable"),
         };
         this.state = useState({
             data: null,
@@ -69,6 +70,13 @@ export class InvoicingDashboard extends Component {
         if (this.state.data?.quote_action_id) {
             this.action.doAction(this.state.data.quote_action_id);
         }
+    }
+
+    openExportComptable() {
+        this.action.doAction({
+            type: "ir.actions.client",
+            tag: "custom_invoicing_dashboard.export_comptable",
+        });
     }
 
     openInvoiceRow(ev) {
